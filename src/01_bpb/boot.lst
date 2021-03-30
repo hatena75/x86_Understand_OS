@@ -1,0 +1,11 @@
+     1                                  entry:
+     2 00000000 EB58                            jmp     ipl     ;IPLへジャンプ
+     3                                          ;BPB
+     4 00000002 90<rept>                        times   90 - ($ - $$) db 0x90
+     5                                          ;IPL
+     6                                  ipl:
+     7 0000005A EBFE                            jmp     $       ;無限ループ
+     8                                  
+     9                                          ;ブートフラグ
+    10 0000005C 00<rept>                        times   510 - ($ - $$) db 0x00
+    11 000001FE 55AA                            db 0x55, 0xAA
